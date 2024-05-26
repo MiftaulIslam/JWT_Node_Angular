@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="form_group">
+	  <div class="form-container sign-in-container">
+		<form #register="ngForm">
+		  <h1>Create Account</h1>
+		  <span>or use your email for registration</span>
+		  <input
+			type="text"
+			placeholder="Name"
+			minlength="3"
+			name="username"
+			ngModel
+			#name="ngModel"
+		  />
+		  <div *ngIf="!name.valid && (name.dirty || name.touched)" class="validation">
+		<span *ngIf="name.errors?.['minlength']"> Name must contain at least 3 characters</span>
+		  </div>
+		  <input
+			type="email"
+			placeholder="Email"
+			pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+			name="email"
+			required
+			ngModel
+			#email="ngModel"
+		  />
+		  <div *ngIf="!email.valid && (email.dirty || email.touched)" class="validation">
+			<span *ngIf="email.errors?.['pattern']"> Enter a valid email address</span>
+			<span *ngIf="email.errors?.['required']"> Email field is required</span>
+		</div>
+		  <input
+			type="password"
+			placeholder="Password"
+			minlength="8"
+			pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+			name="password"
+			required
+			ngModel
+			#password="ngModel"
+		  />
+
+		  <div *ngIf="!password.valid && (password.dirty || password.touched)" class="validation">
+			<span *ngIf="password.errors?.['pattern']">Password must contain at least one letter and one number</span>
+			<span *ngIf="password.errors?.['minlength']">Password must contain at least 8 characters</span>
+			<span *ngIf="password.errors?.['required']">Password is required</span>
+		  </div>
+  
+		  <button type="submit" (click)="onSubmit(register)">Sign Up</button>
+		</form>
+	  </div>
+	  
+	  <div class="overlay-container">
+		<div class="overlay">
+		  <h1>Already have an account?</h1>
+		  <p>To keep connected with us please login with your personal info</p>
+		  <a [routerLink]="['/login']">Log In</a>
+		</div>
+	  </div>
+  
+	</div>
+  </div>
+  

@@ -1,0 +1,36 @@
+
+<div class="container">
+    <div class="form_group">
+	<div class="form-container sign-in-container">
+		<form action="#" [formGroup]="login">
+			<h1>Sign in</h1>
+			
+			<!-- Email field -->
+			<input [formControl] = "email" placeholder="Email" />
+			<div *ngIf="!email.valid && (email.dirty || email.touched)" class="validation">
+				<span *ngIf="email.errors?.['pattern']"> Enter a valid email address</span>
+				<span *ngIf="email.errors?.['required']"> Email field is required</span>
+			</div>
+
+			<!-- Password field -->
+			<input type="password" [formControl] = "password" placeholder="Password" />
+			<div *ngIf="!password.valid && (password.dirty || password.touched)" class="validation">
+				<span *ngIf="password.errors?.['pattern']">Password must contain at least one letter and one number</span>
+				<span *ngIf="password.errors?.['minlength']">Password must contain at least 8 characters</span>
+				<span *ngIf="password.errors?.['required']">Password is required</span>
+			  </div>
+
+			<a class="color-dark" [routerLink]="['/forgot-password']">Forgot your password?</a>
+			<button type="submit" (click)="onSubmit()">Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+				<h1>Don't have an account?</h1>
+				<p>Start a new journey with us</p>
+                <a [routerLink]="['/signup']" class="anchor">Sign Up</a>
+		</div>
+	</div>
+	</div>
+</div>
+
